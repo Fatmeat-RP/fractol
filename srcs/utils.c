@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:11 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/01/28 17:30:23 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/01/28 19:33:35 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@ t_instance	*ft_fractol(t_instance *game)
 
 void	zoom_in(t_instance	*game)
 {
-	mlx_mouse_get_pos(game->win, x, y);
+	mlx_mouse_get_pos(game->win, game->x_off, game->y_off);
 	mlx_clear_window(game->mlx, game->win);
-	mandelbrot_set(x, y);
+	ft_fractol(game);
 }
 
 void	zoom_out(t_instance	*game)
 {
-
+	mlx_mouse_get_pos(game->win, game->x_off, game->y_off);
+	mlx_clear_window(game->mlx, game->win);
+	ft_fractol(game);
 }
 
 int	get_type(const char s*)
