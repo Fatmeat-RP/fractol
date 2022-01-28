@@ -1,6 +1,11 @@
 #ifndef	FRACTOL_H
 # define FRACTOL_H
 
+# include <unistd.h>
+# include <mlx.h>
+# include <stdlib.h>
+# include <stdio.h>
+
 typedef struct	s_img
 {
 	void	*img;
