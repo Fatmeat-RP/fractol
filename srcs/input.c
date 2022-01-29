@@ -6,20 +6,20 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:38 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/01/28 19:33:31 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/01/29 12:06:55 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-key_handling(int keycode, t_instance *game)
+int	key_handling(int keycode, t_instance *game)
 {
 	if (keycode == 53)
 		close_handling(game);
-	if (keycode == arrow_)
+	return (0);
 }
-
-mouse_handling(int button, int x, int y, t_instance *game)
+/*
+int	mouse_handling(int button, int x, int y, t_instance *game)
 {
 	if (button == 1)
 		zoom_in(game);
@@ -31,11 +31,12 @@ mouse_handling(int button, int x, int y, t_instance *game)
 		zoom_in(game);
 	if (button == 5)
 		zoom_out(game);
+	return (0);
 }
-
-close_handling(int keycode, t_instance *game)
+*/
+int	close_handling(t_instance *game)
 {
-	mlx_destroy_image(game->mlx, game->img);
+	mlx_destroy_image(game->mlx, game->img->img);
 	mlx_destroy_window(game->mlx, game->win);
 	exit(EXIT_SUCCESS);
 }

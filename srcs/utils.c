@@ -6,13 +6,13 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:11 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/01/28 19:33:35 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/01/29 11:49:46 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-t_instance	*ft_fractol(t_instance *game)
+/*t_instance	*ft_fractol(t_instance *game)
 {
 	if (game->type == 1)
 		mandelbrot_set(game);
@@ -33,21 +33,20 @@ void	zoom_out(t_instance	*game)
 	mlx_mouse_get_pos(game->win, game->x_off, game->y_off);
 	mlx_clear_window(game->mlx, game->win);
 	ft_fractol(game);
-}
+}*/
 
-int	get_type(const char s*)
+int	get_type(const char *s)
 {
-	if (ft_strcmp("julia", s, 5))
+	if (ft_strncmp("julia", s, 5))
 		return (2);
-	if (ft_strcmp("mandelbrot", s, 10))
-		return (1);
+	return (1);
 }
 
-int	pixel_to_image(t_data *data, int x, int y, int color)
+int	pixel_to_image(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (!dst)
+	if (!data)
 		return (-1);
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;

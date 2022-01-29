@@ -6,13 +6,13 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:14 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/01/28 19:33:34 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/01/29 11:39:52 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-void	julia_set(game)
+/*void	julia_set(game)
 {
 
 }
@@ -21,3 +21,4 @@ void	mandelbrot_set(game)
 {
 
 }
+*/

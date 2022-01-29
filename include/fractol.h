@@ -17,7 +17,7 @@ typedef struct	s_img
 
 typedef struct	s_instance
 {
-	t_img	img;
+	t_img	*img;
 	void	*mlx;
 	void	*win;
 	int		height;
@@ -28,14 +28,17 @@ typedef struct	s_instance
 	int		zoom_level;
 }				t_instance;
 
-int			pixel_to_image(t_data *data, int x, int y, int color);
-void		key_handling(int keycode, t_instance *game);
-void		mouse_handling(int keycode, t_instance *game);
-void		close_handling(int keycode, t_instance *game);
 t_instance	*game_init(t_instance *game);
 t_instance	*ft_fractol(t_instance *game);
-t_instance	*init_arg(int ac, char **av);
+t_instance	*init_arg(int ac, char **av, t_instance *game);
+t_instance	*ft_newinstance(void);
+t_img		*ft_newimg(void);
+int			key_handling(int keycode, t_instance *game);
+int			mouse_handling(int keycode, t_instance *game);
+int			close_handling(t_instance *game);
+int			get_type(const char *s);
+int			ft_atoi(const char *s);
+int			pixel_to_image(t_img *data, int x, int y, int color);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif
-
