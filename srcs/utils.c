@@ -6,34 +6,42 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:11 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/01/29 11:49:46 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/01/29 16:03:52 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-/*t_instance	*ft_fractol(t_instance *game)
+int	ft_fractol(t_instance *game, int x, int y)
 {
 	if (game->type == 1)
-		mandelbrot_set(game);
+		return (mandelbrot_set(game, x, y));
 	if (game->type == 2)
-		julia_set(game);
-	return (game);
+		return (julia_set(game, x, y));
+	return (0);
 }
 
-void	zoom_in(t_instance	*game)
+void	zoom_in(t_instance	*game, int x, int y)
 {
-	mlx_mouse_get_pos(game->win, game->x_off, game->y_off);
+	int i;
+
+	i = -x;
+	i = -y;
 	mlx_clear_window(game->mlx, game->win);
-	ft_fractol(game);
+	game->zoom_level *= 1.01;
+	put_set_to_image(game);
 }
 
-void	zoom_out(t_instance	*game)
+void	zoom_out(t_instance	*game, int x, int y)
 {
-	mlx_mouse_get_pos(game->win, game->x_off, game->y_off);
+	int i;
+
+	i = -x;
+	i = -y;
 	mlx_clear_window(game->mlx, game->win);
-	ft_fractol(game);
-}*/
+	game->zoom_level /= 1.01;
+	put_set_to_image(game);
+}
 
 int	get_type(const char *s)
 {
@@ -42,13 +50,10 @@ int	get_type(const char *s)
 	return (1);
 }
 
-int	pixel_to_image(t_img *data, int x, int y, int color)
+void	pixel_to_image(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (!data)
-		return (-1);
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-	return (0);
+	*(unsigned int*)dst = color;
 }

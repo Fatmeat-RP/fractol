@@ -6,7 +6,7 @@
 #    By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 10:55:45 by acarle-m          #+#    #+#              #
-#    Updated: 2022/01/29 11:36:42 by acarle-m         ###   ########.fr        #
+#    Updated: 2022/01/29 15:15:05 by acarle-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,10 @@ FLAGS		=	-Wall -Wextra -Werror
 BONUSDIR	=	bonussrcs/
 
 LIBS		=	-L mlx -l mlx
+
+HEADERDIR	=	include/
+
+HEADER		=	${HEADERDIR}fractol.h
 
 OBJS		=	$(SRCS:$(SRCSDIR)%.c=$(OBJSDIR)%.o)
 
@@ -54,7 +58,7 @@ bonus	:	$(BONUS_OBJS)
 			make -C mlx
 			$(CC) $(FLAGS) $(BONUS_OBJS) -o $(BONUS_NAME) $(LIB_FLAG) $(MLX_FLAGS)
 
-${OBJS}	:	${OBJSDIR}%.o	:	${SRCSDIR}%.c
+${OBJS}	:	${OBJSDIR}%.o	:	${SRCSDIR}%.c ${HEADER}
 			mkdir -p $(OBJSDIR)
 			$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
@@ -65,8 +69,6 @@ clean	:
 
 fclean	:	clean
 			make clean -C mlx
-			rm -rf $(NAME)
-
-#bonus	:	${NAME}
+			rm -rf $(BUILDDIR)
 
 re		:	fclean all
