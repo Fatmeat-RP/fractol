@@ -24,6 +24,10 @@ int	key_handling(int keycode, t_instance *game)
 		game->x_off += 50;
 	if (keycode == 124)
 		game->x_off -= 50;
+	if (keycode == j)
+		game->type = 2;
+	if (keycode == m)
+		game->type = 1;
 	mlx_clear_window(game->mlx, game->win);
 	put_set_to_image(game);
 	return (0);

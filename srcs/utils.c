@@ -28,7 +28,7 @@ void	zoom_in(t_instance	*game, int x, int y)
 	i = -x;
 	i = -y;
 	mlx_clear_window(game->mlx, game->win);
-	game->zoom_level *= 1.01;
+	game->zoom_level *= 1.05;
 	put_set_to_image(game);
 }
 
@@ -39,7 +39,7 @@ void	zoom_out(t_instance	*game, int x, int y)
 	i = -x;
 	i = -y;
 	mlx_clear_window(game->mlx, game->win);
-	game->zoom_level /= 1.01;
+	game->zoom_level /= 1.05;
 	put_set_to_image(game);
 }
 
