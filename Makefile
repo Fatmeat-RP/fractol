@@ -10,47 +10,48 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME				=	$(BUILDDIR)fractol
+NAME		=	$(BUILDDIR)fractol
 
-BONUS_NAME		=	$(BUILDDIR)fractol_bonus
+BONUS_NAME	=	$(BUILDDIR)fractol_bonus
 
-OBJSDIR			=	objs/
+OBJSDIR		=	objs/
 
 BONUS_OBJSDIR	=	bonus_objs/
 
-BUILDDIR			=	build/
+BUILDDIR	=	build/
 
-SRCSDIR			=	srcs/
+SRCSDIR		=	srcs/
 
-CC					=	gcc
+CC		=	gcc
 
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror
 
-BONUSDIR			=	bonussrcs/
+BONUSDIR	=	bonussrcs/
 
+HEADERDIR	=	include/
 
-HEADERDIR		=	include/
+HEADER		=	${HEADERDIR}fractol.h
 
-HEADER			=	${HEADERDIR}fractol.h
+OBJS		=	$(SRCS:$(SRCSDIR)%.c=$(OBJSDIR)%.o)
 
-OBJS				=	$(SRCS:$(SRCSDIR)%.c=$(OBJSDIR)%.o)
+BONUS_OBJS	=	$(SRCSBONUS:$(SRCSBONUSDIR)%.c=$(BONUS_OBJSDIR)%.o)
 
-BONUS_OBJS		=	$(SRCSBONUS:$(SRCSBONUSDIR)%.c=$(BONUS_OBJSDIR)%.o)
+SRCS		= 	$(wildcard $(SRCSDIR)*.c)
 
-SRCS				= 	$(wildcard $(SRCSDIR)*.c)
+SRCSBONUS	=	$(wildcard $(SRCSBONUSDIR)*.c)
 
-SRCSBONUS		=	$(wildcard $(SRCSBONUSDIR)*.c)
+FRAMEWORKS	=	-framework OpenGL -framework Appkit
 
-FRAMEWORKS		=	-framework OpenGL -framework Appkit
+UNAME		=	$(shell uname -s)
 
-
-UNAME = $(shell uname -s)
 ifeq ($(UNAME), Linux)
-	INCLUDES			=	-I include -I mlx_linux
-	LIBS				=	-L mlx_linux -l mlx_linux
+	INCLUDES	=	-I include -I mlx_linux
+	LIBS		=	-L mlx_linux -l mlx_linux
+	MLX		=	mlx_linux
 else
-	INCLUDES			=	-I include -I mlx
-	LIBS				=	-L mlx -l mlx
+	INCLUDES	=	-I include -I mlx
+	LIBS		=	-L mlx -l mlx
+	MLX		=	mlx
 endif
 
 
@@ -58,35 +59,35 @@ endif
 ####################### MAKE RULES ###########################
 ##############################################################
 
-${NAME}			:	${OBJS}
-						make -C mlx
-						mkdir -p $(BUILDDIR)
-						$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBS) $(FRAMEWORKS)
+$(NAME)		:	$(OBJS)
+		make -C $(MLX)
+		mkdir -p $(BUILDDIR)
+		$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBS) $(FRAMEWORKS)
 
 $(NAME_BONUS)	:	$(BONUS_OBJS)
-						make -C mlx
-						mkdir -p $(BUILDDIR)
-						$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME) $(LIB_FLAG) $(MLX_FLAGS)
+		make -C $(MLX)
+		mkdir -p $(BUILDDIR)
+		$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME) $(LIB_FLAG) $(MLX_FLAGS)
 
-${OBJS}			:	${OBJSDIR}%.o	:	${SRCSDIR}%.c ${HEADER}
-						mkdir -p $(OBJSDIR)
-						$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(OBJS)		:	$(OBJSDIR)%.o		:	$(SRCSDIR)%.c $(HEADER)
+		mkdir -p $(OBJSDIR)
+		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-${BONUS_OBJS}	:	${BONUS_OBJSDIR}%.o	:	${SRCSBONUSDIR}%.c ${HEADER}
-						mkdir -p $(BONUS_OBJSDIR)
-						$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(BONUS_OBJS)	:	$(BONUS_OBJSDIR)%.o	:	$(SRCSBONUSDIR)%.c $(HEADER)
+		mkdir -p $(BONUS_OBJSDIR)
+		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-all				:	mandatory bonus
+all		:	mandatory bonus
 
-mandatory		:	$(NAME)
+mandatory	:	$(NAME)
 
-bonus				:	$(NAME_BONUS)
+bonus		:	$(NAME_BONUS)
 
-clean				:
-						rm -rf $(OBJSDIR)
+clean		:
+		rm -rf $(OBJSDIR)
 
-fclean			:	clean
-						make clean -C mlx
-						rm -rf $(BUILDDIR)
+fclean		:	clean
+		make clean -C mlx
+		rm -rf $(BUILDDIR)
 
-re					:	fclean all
+re		:	fclean all
