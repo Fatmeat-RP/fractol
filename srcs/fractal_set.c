@@ -21,8 +21,8 @@ int	julia_set(t_instance *game, int x, int y)
 	double	tmp;
 	int		iteration;
 
-	xscale = (2.47 * x / game->height * game->zoom_level);
-	yscale = (2.24 * y / game->width * game->zoom_level);
+	xscale = (2.47 * (x - game->x_off) / game->height / game->zoom_level);
+	yscale = (2.24 * (y - game->y_off) / game->width / game->zoom_level);
 	x0 = xscale;
 	y0 = yscale;
 	iteration = 0;
@@ -67,10 +67,10 @@ int	mandelbrot_set(t_instance *game, int x, int y)
 	double	x0;
 	double	y0;
 	double	tmp;
-	int		iteration;
+	int	iteration;
 
-	xscale = ((2.47 * (x - game->x_off) / game->width) * game->zoom_level);
-	yscale = ((2.24 * (y - game->y_off) / game->height) * game->zoom_level);
+	xscale = ((2.47 * (x - game->x_off) / game->width) / game->zoom_level);
+	yscale = ((2.24 * (y - game->y_off) / game->height) / game->zoom_level);
 	x0 = 0;
 	y0 = 0;
 	iteration = 0;

@@ -4,12 +4,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <mlx.h>
 
 # if __APPLE__
 
-#  include <mlx.h>
-
-#  define KEY_ESC 53
+#  define KEY_ESC 		53
 #  define KEY_ARROW_UP		126
 #  define KEY_ARROW_DOWN	125
 #  define KEY_ARROW_LEFT	123
@@ -23,24 +22,22 @@
 
 # elif __linux__
 
-#  include <mlx_linux.h>
-
-#  define KEY_ESC
-#  define KEY_ARROW_UP
-#  define KEY_ARROW_DOWN
-#  define KEY_ARROW_LEFT
-#  define KEY_ARROW_RIGHT
-#  define KEY_M
-#  define KEY_J
-#  define RIGHT_BUTTON
-#  define LEFT_BUTTON
-#  define NORTH_SCROLL
-#  define SOUTH_SCROLL
+#  define KEY_ESC		65307
+#  define KEY_ARROW_UP		65362
+#  define KEY_ARROW_DOWN	65364
+#  define KEY_ARROW_LEFT	65361
+#  define KEY_ARROW_RIGHT	65363
+#  define KEY_M			109
+#  define KEY_J			106
+#  define RIGHT_BUTTON		3
+#  define LEFT_BUTTON		1
+#  define NORTH_SCROLL		4
+#  define SOUTH_SCROLL		5
 
 # endif
 
 
-# define MAX_ITERATION 100
+# define MAX_ITERATION 1000
 
 typedef struct	s_img
 {

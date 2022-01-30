@@ -21,24 +21,20 @@ int	ft_fractol(t_instance *game, int x, int y)
 	return (0);
 }
 
-void	zoom_in(t_instance	*game, int x, int y)
+void	zoom_in(t_instance *game, int x, int y)
 {
-	int i;
-
-	i = -x;
-	i = -y;
 	mlx_clear_window(game->mlx, game->win);
+	game->x_off = x / 2;
+	game->y_off = y / 2;
 	game->zoom_level *= 1.05;
 	put_set_to_image(game);
 }
 
-void	zoom_out(t_instance	*game, int x, int y)
+void	zoom_out(t_instance *game, int x, int y)
 {
-	int i;
-
-	i = -x;
-	i = -y;
 	mlx_clear_window(game->mlx, game->win);
+	game->x_off = x / 2;
+	game->y_off = y / 2;
 	game->zoom_level /= 1.05;
 	put_set_to_image(game);
 }

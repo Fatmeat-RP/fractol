@@ -14,7 +14,6 @@
 
 int	key_handling(int keycode, t_instance *game)
 {
-	printf("key : %i", keycode);
 	if (keycode == KEY_ESC)
 		close_handling(game);
 	if (keycode == KEY_ARROW_UP)
@@ -36,7 +35,6 @@ int	key_handling(int keycode, t_instance *game)
 
 int	mouse_handling(int button, int x, int y, t_instance *game)
 {
-	printf("button : %i", button);
 	if (button == LEFT_BUTTON)
 		zoom_in(game, x, y);
 	if (button == RIGHT_BUTTON)
