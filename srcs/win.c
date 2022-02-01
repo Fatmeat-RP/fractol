@@ -15,9 +15,9 @@
 t_instance	*init_arg(int ac, char **av, t_instance *game)
 {
 
-	if (ac == 2)
+	if (ac >= 2)
 	{	
-		if (!get_type(av[1], game))
+		if (!get_type(av, game, ac))
 		{
 			printf("Bad set type.\n"
 				"One arguments need to be read, it need to be one of the following :\n"
@@ -27,7 +27,7 @@ t_instance	*init_arg(int ac, char **av, t_instance *game)
 			exit(EXIT_FAILURE);
 		}
 	}
-	else
+	else if (ac < 2)
 	{
 		printf("One arguments need to be read, it need to be one of the following :\n"
 			"	-m --mandelbrot    draw the mandelbrot set in a new window\n"

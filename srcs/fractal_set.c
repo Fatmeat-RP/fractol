@@ -47,7 +47,7 @@ void	put_set_to_image(t_instance *game)
 		j = 0;
 		while (j < game->height)
 		{
-			iteration = ft_fractol(game, i , j);
+			iteration = ft_fractol(game, i - game->x_off * game->zoom_level ,j - game->y_off * game->zoom_level);
 			pixel_to_image(&game->img, i, j, iteration);
 			j++;
 		}
@@ -61,8 +61,8 @@ int	mandelbrot_set(t_instance *game, int x, int y)
 	t_double	nb;
 	int	iteration;
 
-	nb.xscale = ((2.47 / game->zoom_level) * (x - game->x_off) / game->width);
-	nb.yscale = ((2.24 / game->zoom_level) * (y - game->y_off) / game->height);
+	nb.xscale = ((2.47 / game->zoom_level) * x / game->width);
+	nb.yscale = ((2.24 / game->zoom_level) * y / game->height);
 	nb.x0 = 0;
 	nb.y0 = 0;
 	iteration = 0;

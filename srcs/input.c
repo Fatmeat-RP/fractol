@@ -17,13 +17,13 @@ int	key_handling(int keycode, t_instance *game)
 	if (keycode == KEY_ESC)
 		close_handling(game);
 	if (keycode == KEY_ARROW_UP)
-		game->y_off += 50;
+		game->y_off += 50 * game->zoom_level;
 	if (keycode == KEY_ARROW_DOWN)
-		game->y_off -= 50;
+		game->y_off -= 50 * game->zoom_level;
 	if (keycode == KEY_ARROW_LEFT)
-		game->x_off += 50;
+		game->x_off += 50 * game->zoom_level;
 	if (keycode == KEY_ARROW_RIGHT)
-		game->x_off -= 50;
+		game->x_off -= 50 * game->zoom_level;
 	if (keycode == KEY_J)
 		game->type = 2;
 	if (keycode == KEY_M)

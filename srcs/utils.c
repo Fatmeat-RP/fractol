@@ -17,20 +17,17 @@ int	ft_fractol(t_instance *game, int x, int y)
 	if (game->type == 1)
 		return (mandelbrot_set(game, x, y));
 	if (game->type == 2)
-		return (julia_set(game, x, y));/*
-	if (game->type == 3)
-		return (bonus_set(game, x, y));
-*/	return (0);
+		return (julia_set(game, x, y));
+	return (0);
 }
 
 void	zoom_in(t_instance *game, int x, int y)
 {
 	mlx_clear_window(game->mlx, game->win);
-	fprintf(stdout, "x : %i, y : %i", x, y);
-	game->x_off = x - game->x_off;
-	game->y_off = y - game->y_off;
-	fprintf(stdout, "x_off : %i, y_off : %i", game->x_off, game->y_off);
+	printf("x :%i y :%i \n", x, y);
 	game->zoom_level *= 1.07;
+	//game->x_off = (x - game->x_off);
+	//game->y_off = (y - game->y_off);
 	put_set_to_image(game);
 }
 
@@ -42,24 +39,26 @@ void	zoom_out(t_instance *game, int x, int y)
 	put_set_to_image(game);
 }
 
-int	get_type(const char *s, t_instance *game)
+int	get_type(char **av, t_instance *game, int ac)
 {
-	if (ft_strncmp("-m", s, 2) == 0 || ft_strncmp("--mandelbrot", s, 12) == 0)
+	int	i;
+
+	i = 0;
+	while (i < ac)
 	{
-		game->type = 1;
-		return (game->type);
+		if (ft_strncmp("-m", av[i], 2) == 0 || ft_strncmp("--mandelbrot", av[i], 12) == 0)
+		{
+			game->type = 1;
+			return (game->type);
+		}
+		if (ft_strncmp("-j", av[i], 2) == 0 || ft_strncmp("--julia", av[i], 7) == 0)
+		{
+			game->type = 2;
+			return (game->type);
+		}
+		i++;
 	}
-	if (ft_strncmp("-j", s, 2) == 0 || ft_strncmp("--julia", s, 7) == 0)
-	{
-		game->type = 2;
-		return (game->type);
-	}/*
-	if (ft_strncmp("-b", s, 2) == 0 || ft_strncmp("--bonus", s, 7) == 0)
-	{
-		game->type = 3;
-		return (game->type);
-	}
-*/	return (0);
+	return (0);
 }
 
 void	pixel_to_image(t_img *data, int x, int y, int color)
