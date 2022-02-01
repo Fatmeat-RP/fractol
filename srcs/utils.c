@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:11 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/01 11:48:08 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/01 12:15:44 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@ int	ft_fractol(t_instance *game, int x, int y)
 	if (game->type == 1)
 		return (mandelbrot_set(game, x, y));
 	if (game->type == 2)
-		return (julia_set(game, x, y));
-	return (0);
+		return (julia_set(game, x, y));/*
+	if (game->type == 3)
+		return (bonus_set(game, x, y));
+*/	return (0);
 }
 
 void	zoom_in(t_instance *game, int x, int y)
 {
 	mlx_clear_window(game->mlx, game->win);
-	game->x_off = x / 2;
-	game->y_off = y / 2;
+	game->x_off = x - game->x_off;
+	game->y_off = y - game->y_off;
 	game->zoom_level *= 1.05;
 	put_set_to_image(game);
 }
@@ -33,8 +35,8 @@ void	zoom_in(t_instance *game, int x, int y)
 void	zoom_out(t_instance *game, int x, int y)
 {
 	mlx_clear_window(game->mlx, game->win);
-	game->x_off = x / 2;
-	game->y_off = y / 2;
+	game->x_off = x - game->x_off;
+	game->y_off = y - game->y_off;
 	game->zoom_level /= 1.05;
 	put_set_to_image(game);
 }
@@ -50,12 +52,12 @@ int	get_type(const char *s, t_instance *game)
 	{
 		game->type = 2;
 		return (game->type);
-	}
+	}/*
 	if (ft_strncmp("-b", s, 2) == 0 || ft_strncmp("--bonus", s, 7) == 0)
 	{
 		game->type = 3;
 		return (game->type);
-	}
+	}*/
 	return (0);
 }
 

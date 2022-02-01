@@ -15,12 +15,12 @@
 #  define KEY_ARROW_RIGHT	124
 #  define KEY_M				46
 #  define KEY_J				38
-#  define RIGHT_BUTTON		1
-#  define LEFT_BUTTON		2
+#  define RIGHT_BUTTON		2
+#  define LEFT_BUTTON		1
 #  define NORTH_SCROLL		4
 #  define SOUTH_SCROLL		5
 
-# elif __unix__
+# elif __linux__
 
 #  define KEY_ESC			65307
 #  define KEY_ARROW_UP		65362
