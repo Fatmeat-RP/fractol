@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:04 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/01/29 15:42:30 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/01 11:49:34 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,27 @@
 
 t_instance	*init_arg(int ac, char **av, t_instance *game)
 {
-	unsigned int	height;
-	unsigned int	width;
 
-	if (ac > 4)
-	{
-		game->type = get_type(av[1]);
-		width = ft_atoi(av[2]);
-		if (width < 1900 && width > 800)
-			game->width = width;
-		height = ft_atoi(av[3]);
-		if (height < 1080 && height > 600)
-			game->height = height;
+	if (ac == 2)
+	{	
+		if (!get_type(av[1], game))
+		{
+			printf("Bad set type.\n"
+				"One arguments need to be read, it need to be one of the following :\n"
+				"	-m --mandelbrot    draw the mandelbrot set in a new window\n"
+				"	-j --julia         draw the julia set in a new window\n"
+				"	-b --bonus         draw the bonus set in a new window\n");
+			exit(EXIT_FAILURE);
+		}
 	}
-	else if (ac > 1)
-		game->type = get_type(av[1]);
+	else
+	{
+		printf("One arguments need to be read, it need to be one of the following :\n"
+			"	-m --mandelbrot    draw the mandelbrot set in a new window\n"
+			"	-j --julia         draw the julia set in a new window\n"
+			"	-b --bonus         draw the bonus set in a new window\n");
+		exit(EXIT_FAILURE);
+	}
 	return (game);
 }
 
