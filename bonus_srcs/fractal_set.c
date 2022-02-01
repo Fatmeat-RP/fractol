@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:14 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/01 13:37:56 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/01 13:26:06 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 int	julia_set(t_instance *game, int x, int y)
 {
-	t_double	nb;
-	int	iteration;
+	double	yscale;
+	double	xscale;
+	double	x0;
+	double	y0;
+	double	tmp;
+	int		iteration;
 
-	nb.xscale = ((2.47 / game->zoom_level) * (x - game->x_off) / game->width);
-	nb.yscale = ((2.24 / game->zoom_level) * (y - game->y_off) / game->height);
-	nb.x0 = x;
-	nb.y0 = y;
+	xscale = (2 * (x - game->x_off) / game->height / game->zoom_level);
+	yscale = (2 * (y - game->y_off) / game->width / game->zoom_level);
+	x0 = xscale;
+	y0 = yscale;
 	iteration = 0;
-	while (((nb.xscale * nb.xscale + nb.yscale * nb.yscale) < 4) && (iteration < MAX_ITERATION))
+	while (((xscale * xscale + yscale * yscale) < 9) && (iteration < MAX_ITERATION))
 	{
-		nb.tmp = nb.xscale * nb.xscale - nb.yscale * nb.yscale;
-		nb.yscale = 2 * nb.xscale * nb.yscale + nb.y0;
-		nb.xscale = nb.tmp + nb.x0;
+		tmp = xscale * xscale - yscale * yscale;
+		y0 = 2 * xscale * yscale + y0;
+		x0 = tmp + x0;
 		iteration++;
 	}
 	if (iteration == MAX_ITERATION)
@@ -58,19 +62,23 @@ void	put_set_to_image(t_instance *game)
 
 int	mandelbrot_set(t_instance *game, int x, int y)
 {
-	t_double	nb;
+	double	yscale;
+	double	xscale;
+	double	x0;
+	double	y0;
+	double	tmp;
 	int	iteration;
 
-	nb.xscale = ((2.47 / game->zoom_level) * (x - game->x_off) / game->width);
-	nb.yscale = ((2.24 / game->zoom_level) * (y - game->y_off) / game->height);
-	nb.x0 = 0;
-	nb.y0 = 0;
+	xscale = ((2.47 * game->zoom_level) *(x - game->x_off) / game->width);
+	yscale = ((2.24 * game->zoom_level) * (y - game->y_off) / game->height);
+	x0 = 0;
+	y0 = 0;
 	iteration = 0;
-	while (((nb.x0 * nb.x0 + nb.y0 * nb.y0) < 4) && (iteration < MAX_ITERATION))
+	while (((x0 * x0 + y0 * y0) < 4) && (iteration < MAX_ITERATION))
 	{
-		nb.tmp = nb.x0 * nb.x0 - nb.y0 * nb.y0 + nb.xscale;
-		nb.y0 = 2 * nb.x0 * nb.y0 + nb.yscale;
-		nb.x0 = nb.tmp;
+		tmp = x0 * x0 - y0 * y0 + xscale;
+		y0 = 2 * x0 * y0 + yscale;
+		x0 = tmp;
 		iteration++;
 	}
 	if (iteration == MAX_ITERATION)

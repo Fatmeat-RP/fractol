@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:11 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/01 13:23:41 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/01 13:24:06 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	ft_fractol(t_instance *game, int x, int y)
 	if (game->type == 1)
 		return (mandelbrot_set(game, x, y));
 	if (game->type == 2)
-		return (julia_set(game, x, y));/*
+		return (julia_set(game, x, y));
 	if (game->type == 3)
 		return (bonus_set(game, x, y));
-*/	return (0);
+	return (0);
 }
 
 void	zoom_in(t_instance *game, int x, int y)
@@ -53,13 +53,13 @@ int	get_type(const char *s, t_instance *game)
 	{
 		game->type = 2;
 		return (game->type);
-	}/*
+	}
 	if (ft_strncmp("-b", s, 2) == 0 || ft_strncmp("--bonus", s, 7) == 0)
 	{
 		game->type = 3;
 		return (game->type);
 	}
-*/	return (0);
+	return (0);
 }
 
 void	pixel_to_image(t_img *data, int x, int y, int color)

@@ -41,7 +41,7 @@
 # endif
 
 
-# define MAX_ITERATION 1000
+# define MAX_ITERATION 100
 
 typedef struct	s_img
 {
@@ -64,6 +64,15 @@ typedef struct	s_instance
 	int		y_off;
 	int		x_off;
 }				t_instance;
+
+typedef struct	s_double
+{
+	double	yscale;
+	double	xscale;
+	double	x0;
+	double	y0;
+	double	tmp;
+}				t_double;
 
 t_instance	*init_arg(int ac, char **av, t_instance *game);
 t_instance	*game_init(t_instance *game);

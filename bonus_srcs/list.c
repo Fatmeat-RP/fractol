@@ -10,8 +10,8 @@ t_instance	*ft_newinstance(void)
 		printf("couldn't malloc!!");
 		exit (EXIT_FAILURE);
 	}
-	game->width = 1900;
-	game->height = 1080;
+	game->width = 800;
+	game->height = 600;
 	game->x_off = game->width / 2;
 	game->y_off = game->height / 2;
 	game->zoom_level = 1;
