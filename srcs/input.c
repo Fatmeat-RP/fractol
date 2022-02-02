@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:38 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/02 18:31:16 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/02 21:10:56 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,25 @@ int	mouse_handling(int button, int x, int y, t_instance *game)
 	return (0);
 }
 
-int	mouse_moving(t_instance *game)
+int	mouse_moving(int x, int y, t_instance *game)
 {
-	int x[1];
-	int y[1];
+	static int	last_y;
+	static int	last_x;
 
-	mlx_mouse_get_pos(game, x, y);
-	if (x[0] < game->width && y[0] < game->height)
+	if (game->type == 2)
 	{
-		game->julia_x = (x[0] / game->width);
-		game->julia_y = (y[0] / game->height);
-		mlx_clear_window(game->mlx, game->win);
-		put_set_to_image(game);
-	}
-	else
-	{
-		game->julia_x = ((x[0] % game->width) / game->width);
-		game->julia_y = ((y[0] % game->height) / game->height);
+		if ((x < game->width && x >= 0) && (y >= 0 && y <= game->height))
+		{
+			if (abs(last_x - x) > 50 || abs(last_y - y) > 50)
+			{
+				game->julia_x = (long double)rand() / (long double)RAND_MAX;
+				game->julia_y = (long double)rand() / (long double)RAND_MAX;
+				mlx_clear_window(game->mlx, game->win);
+				put_set_to_image(game);
+				last_x = x;
+				last_y = y;
+			}
+		}
 	}
 	return (0);
 }

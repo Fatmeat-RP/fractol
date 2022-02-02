@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:11 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/02 15:51:09 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/02 21:10:57 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,14 @@ int	get_type(char **av, t_instance *game, int ac)
 	i = 0;
 	while (i < ac)
 	{
-		if (ft_strncmp("-m", av[i], 2) == 0 || ft_strncmp("--mandelbrot", av[i], 12) == 0)
+		if (ft_strncmp("-m", av[i], 2) == 0
+			|| ft_strncmp("--mandelbrot", av[i], 12) == 0)
 		{
 			game->type = 1;
 			return (game->type);
 		}
-		if (ft_strncmp("-j", av[i], 2) == 0 || ft_strncmp("--julia", av[i], 7) == 0)
+		if (ft_strncmp("-j", av[i], 2) == 0
+			|| ft_strncmp("--julia", av[i], 7) == 0)
 		{
 			game->type = 2;
 			return (game->type);
@@ -66,5 +68,5 @@ void	pixel_to_image(t_img *data, int x, int y, int color)
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }

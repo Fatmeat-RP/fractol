@@ -5,6 +5,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <mlx.h>
+# include <math.h>
 
 # if __APPLE__
 
@@ -33,11 +34,7 @@
 #  define LEFT_BUTTON		1
 #  define NORTH_SCROLL		4
 #  define SOUTH_SCROLL		5
-/*
-# elif _WIN64
 
-# elif _WIN32
-*/
 # endif
 
 
@@ -90,7 +87,7 @@ int			mouse_handling(int button, int x, int y, t_instance *game);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			mandelbrot_set(t_instance *game, int x, int y);
 int			get_type(char **av, t_instance *game, int ac);
-int			mouse_moving(t_instance *game);
+int			mouse_moving(int x, int y, t_instance *game);
 int			key_handling(int keycode, t_instance *game);
 int			ft_fractol(t_instance *game, int x, int y);
 int			julia_set(t_instance *game, int x, int y);

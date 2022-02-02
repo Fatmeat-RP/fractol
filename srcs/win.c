@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:04 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/02 18:12:29 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/02 21:09:27 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 t_instance	*init_arg(int ac, char **av, t_instance *game)
 {
-
 	if (ac >= 2)
 	{	
 		if (!get_type(av, game, ac))
 		{
 			printf("Bad set type.\n"
-				"One arguments need to be read, it need to be one of the following :\n"
+				"One arguments need to be read, "
+				"it need to be one of the following :\n"
 				"	-m --mandelbrot    draw the mandelbrot set in a new window\n"
 				"	-j --julia         draw the julia set in a new window\n"
 				/*"	-b --bonus         draw the bonus set in a new window\n"*/);
@@ -29,7 +29,8 @@ t_instance	*init_arg(int ac, char **av, t_instance *game)
 	}
 	else if (ac < 2)
 	{
-		printf("One arguments need to be read, it need to be one of the following :\n"
+		printf("One arguments need to be read, "
+			"it need to be one of the following :\n"
 			"	-m --mandelbrot    draw the mandelbrot set in a new window\n"
 			"	-j --julia         draw the julia set in a new window\n"
 			/*"	-b --bonus         draw the bonus set in a new window\n"*/);
@@ -46,7 +47,8 @@ t_instance	*game_init(t_instance *game)
 		fprintf(stderr, "Error, couldn't init mlx !");
 		exit (EXIT_FAILURE);
 	}
-	game->win = mlx_new_window(game->mlx, game->width, game->height, "Hello world!");
+	game->win = mlx_new_window(game->mlx, game->width,
+			game->height, "Hello world!");
 	if (game->win == NULL)
 	{
 		fprintf(stderr, "Error, couldn't create window !");
@@ -82,10 +84,10 @@ int	main(int ac, char **av)
 	game = game_init(game);
 	game = img_init(game);
 	put_set_to_image(game);
+	mlx_hook(game->win, 6, 0, mouse_moving, game);
 	mlx_hook(game->win, 17, 0, close_handling, game);
 	mlx_key_hook(game->win, key_handling, game);
 	mlx_mouse_hook(game->win, mouse_handling, game);
-	mlx_hook(game->win, 6, (1L<<5), mouse_moving, game);
 	mlx_loop(game->mlx);
 	return (0);
 }
