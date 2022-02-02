@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:38 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/01 13:23:41 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/02 18:31:16 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	key_handling(int keycode, t_instance *game)
 	if (keycode == KEY_ESC)
 		close_handling(game);
 	if (keycode == KEY_ARROW_UP)
-		game->y_off += 50 * game->zoom_level;
+		game->y_off += 50;
 	if (keycode == KEY_ARROW_DOWN)
-		game->y_off -= 50 * game->zoom_level;
+		game->y_off -= 50;
 	if (keycode == KEY_ARROW_LEFT)
-		game->x_off += 50 * game->zoom_level;
+		game->x_off += 50;
 	if (keycode == KEY_ARROW_RIGHT)
-		game->x_off -= 50 * game->zoom_level;
+		game->x_off -= 50;
 	if (keycode == KEY_J)
 		game->type = 2;
 	if (keycode == KEY_M)
@@ -43,6 +43,27 @@ int	mouse_handling(int button, int x, int y, t_instance *game)
 		zoom_in(game, x, y);
 	if (button == SOUTH_SCROLL)
 		zoom_out(game, x, y);
+	return (0);
+}
+
+int	mouse_moving(t_instance *game)
+{
+	int x[1];
+	int y[1];
+
+	mlx_mouse_get_pos(game, x, y);
+	if (x[0] < game->width && y[0] < game->height)
+	{
+		game->julia_x = (x[0] / game->width);
+		game->julia_y = (y[0] / game->height);
+		mlx_clear_window(game->mlx, game->win);
+		put_set_to_image(game);
+	}
+	else
+	{
+		game->julia_x = ((x[0] % game->width) / game->width);
+		game->julia_y = ((y[0] % game->height) / game->height);
+	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:11 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/01 13:23:41 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/02 15:51:09 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	zoom_in(t_instance *game, int x, int y)
 {
 	mlx_clear_window(game->mlx, game->win);
 	printf("x :%i y :%i \n", x, y);
-	game->zoom_level *= 1.07;
-	//game->x_off = (x - game->x_off);
-	//game->y_off = (y - game->y_off);
+	game->zoom_level += 0.05;
+	game->x_off += x / game->x_off * game->zoom_level;
+	game->y_off += y / game->y_off * game->zoom_level;
 	put_set_to_image(game);
 }
 
@@ -35,7 +35,7 @@ void	zoom_out(t_instance *game, int x, int y)
 {
 	mlx_clear_window(game->mlx, game->win);
 	printf("x : %i, y : %i", x, y);
-	game->zoom_level /= 1.07;
+	game->zoom_level -= 0.05;
 	put_set_to_image(game);
 }
 

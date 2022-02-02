@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:04 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/01 13:23:39 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/02 18:12:29 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	main(int ac, char **av)
 	mlx_hook(game->win, 17, 0, close_handling, game);
 	mlx_key_hook(game->win, key_handling, game);
 	mlx_mouse_hook(game->win, mouse_handling, game);
+	mlx_hook(game->win, 6, (1L<<5), mouse_moving, game);
 	mlx_loop(game->mlx);
 	return (0);
 }

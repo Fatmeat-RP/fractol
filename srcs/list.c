@@ -16,5 +16,8 @@ t_instance	*ft_newinstance(void)
 	game->y_off = game->height / 2;
 	game->zoom_level = 1;
 	game->type = 1;
+	game->resratio = game->height / game->width;
+	game->julia_y = 0.5;
+	game->julia_x = 0.5;
 	return (game);
 }
