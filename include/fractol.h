@@ -16,6 +16,7 @@
 #  define KEY_ARROW_RIGHT	124
 #  define KEY_M				46
 #  define KEY_J				38
+#  define KEY_C				8
 #  define RIGHT_BUTTON		2
 #  define LEFT_BUTTON		1
 #  define NORTH_SCROLL		4
@@ -30,6 +31,7 @@
 #  define KEY_ARROW_RIGHT	65363
 #  define KEY_M				109
 #  define KEY_J				106
+#  define KEY_C				8
 #  define RIGHT_BUTTON		3
 #  define LEFT_BUTTON		1
 #  define NORTH_SCROLL		4
@@ -39,6 +41,12 @@
 
 
 # define MAX_ITERATION 70
+
+# define PINK	5
+# define GREEN	6
+# define BLUE	7
+# define BROWN	8
+# define RED	9
 
 typedef struct	s_img
 {
@@ -63,6 +71,8 @@ typedef struct	s_instance
 	long double	resratio;
 	long double	julia_x;
 	long double	julia_y;
+	int			color;
+	int			*palette;
 }				t_instance;
 
 typedef struct	s_double
@@ -75,14 +85,42 @@ typedef struct	s_double
 	long double	tmp;
 }				t_double;
 
+/**
+ * @brief read the programme arguments and check that they are correct for 
+ * the programme use case 
+ * 
+ * @param ac arguments
+ * @param av number of arguments
+ * @param game this is a t_instance structure
+ * @return t_instance* 
+ */
 t_instance	*init_arg(int ac, char **av, t_instance *game);
+/**
+ * @brief initialize a new mlx context and a new window in the game t_instance structure
+ * 
+ * @param game this is a t_instance structure
+ * @return t_instance* 
+ */
 t_instance	*game_init(t_instance *game);
+/**
+ * @brief initialize a new image in the game t_instance structure
+ * 
+ * @param game this is a t_instance structure
+ * @return t_instance* 
+ */
 t_instance	*img_init(t_instance *game);
+/**
+ * @brief initialize a new t_instance structure
+ * 
+ * @return t_instance* 
+ */
 t_instance	*ft_newinstance(void);
 void		pixel_to_image(t_img *data, int x, int y, int color);
+void		get_palette(char *s, t_instance *game);
 void		zoom_out(t_instance *game, int x, int y);
 void		zoom_in(t_instance *game, int x, int y);
 void		put_set_to_image(t_instance *game);
+void		set_palette(int *palette, t_instance *game);
 int			mouse_handling(int button, int x, int y, t_instance *game);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			mandelbrot_set(t_instance *game, int x, int y);
@@ -92,6 +130,7 @@ int			key_handling(int keycode, t_instance *game);
 int			ft_fractol(t_instance *game, int x, int y);
 int			julia_set(t_instance *game, int x, int y);
 int			close_handling(t_instance *game);
+int			init_palette(int color, t_instance *game);
 int			ft_atoi(const char *s);
 
 #endif

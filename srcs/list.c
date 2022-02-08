@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:10:32 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/02 21:10:38 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/08 13:36:05 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ t_instance	*ft_newinstance(void)
 	game->resratio = game->height / game->width;
 	game->julia_y = 0.5;
 	game->julia_x = 0.5;
+	game->color = 0;
 	return (game);
 }

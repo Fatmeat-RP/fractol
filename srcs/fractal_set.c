@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:14 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/02 21:13:06 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/08 13:51:58 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,34 +35,8 @@ int	julia_set(t_instance *game, int x, int y)
 	return (iteration);
 }
 
-void	put_set_to_image(t_instance *game)
-{
-	int			i;
-	int			j;
-	int			iteration;
-	static int	color[6]
-		= {0x00FA5852, 0x00DE4985, 0x00BE49DE, 0x00A952FA, 0x00F55DE6};
-
-	i = 0;
-	j = 0;
-	while (i < game->width)
-	{
-		j = 0;
-		while (j < game->height)
-		{
-			iteration = ft_fractol(game, i, j);
-			if (iteration == 0)
-				iteration = 0;
-			else
-				iteration = color[iteration % 5];
-			pixel_to_image(&game->img, i, j, iteration);
-			j++;
-		}
-		i++;
-	}
-	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
-}
-
+/*	the diff between 4.8 and 2.4 need to be scaled tho that 
+1x*1y is the same as 1pixel*1pixel*/
 int	mandelbrot_set(t_instance *game, int x, int y)
 {
 	t_double	nb;

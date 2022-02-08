@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:04 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/02 21:09:27 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/08 13:43:16 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,8 @@
 
 t_instance	*init_arg(int ac, char **av, t_instance *game)
 {
-	if (ac >= 2)
+	if ((ac >= 2 && !get_type(av, game, ac)) || ac < 2)
 	{	
-		if (!get_type(av, game, ac))
-		{
-			printf("Bad set type.\n"
-				"One arguments need to be read, "
-				"it need to be one of the following :\n"
-				"	-m --mandelbrot    draw the mandelbrot set in a new window\n"
-				"	-j --julia         draw the julia set in a new window\n"
-				/*"	-b --bonus         draw the bonus set in a new window\n"*/);
-			exit(EXIT_FAILURE);
-		}
-	}
-	else if (ac < 2)
-	{
 		printf("One arguments need to be read, "
 			"it need to be one of the following :\n"
 			"	-m --mandelbrot    draw the mandelbrot set in a new window\n"
