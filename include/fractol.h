@@ -116,11 +116,11 @@ t_instance	*img_init(t_instance *game);
  */
 t_instance	*ft_newinstance(void);
 void		pixel_to_image(t_img *data, int x, int y, int color);
-void		get_palette(char *s, t_instance *game);
+void		set_palette(int *palette, t_instance *game);
 void		zoom_out(t_instance *game, int x, int y);
 void		zoom_in(t_instance *game, int x, int y);
+void		get_palette(char *s, t_instance *game);
 void		put_set_to_image(t_instance *game);
-void		set_palette(int *palette, t_instance *game);
 int			mouse_handling(int button, int x, int y, t_instance *game);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			mandelbrot_set(t_instance *game, int x, int y);
@@ -132,5 +132,6 @@ int			julia_set(t_instance *game, int x, int y);
 int			close_handling(t_instance *game);
 int			init_palette(int color, t_instance *game);
 int			ft_atoi(const char *s);
+int 		gcd(int a, int b);
 
 #endif

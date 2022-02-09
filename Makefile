@@ -6,7 +6,7 @@
 #    By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 10:55:45 by acarle-m          #+#    #+#              #
-#    Updated: 2022/02/01 11:57:03 by acarle-m         ###   ########.fr        #
+#    Updated: 2022/02/09 18:11:08 by acarle-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@ BONUS_NAME		=	$(BUILDDIR)fractol_bonus
 
 OBJSDIR			=	objs/
 
-BONUS_OBJSDIR		=	bonus_objs/
+BONUS_OBJSDIR	=	bonus_objs/
 
 BUILDDIR		=	build/
 
 SRCSDIR			=	srcs/
 
-CC			=	gcc
+CC				=	gcc
 
 CFLAGS			=	-Wall -Wextra -Werror
 
@@ -48,10 +48,10 @@ ifeq ($(UNAME), Linux)
 	CC1			=	$(CC) $(OBJS) -Lmlx_linux mlx_linux/libmlx.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 	CC2			=	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -Iinclude -O3 -c $< -o $@
 else
-	INCLUDES		=	-I include -I mlx
-	LIBS			=	-L mlx -l mlx
+	INCLUDES	=	-I include -I mlx
+	LIBS		=	-L mlx -l mlx
 	MLX			=	mlx
-	FRAMEWORKS		=	-framework OpenGL -framework Appkit
+	FRAMEWORKS	=	-framework OpenGL -framework Appkit
 	GCL			=	
 	CC1			=	$(CC) $(OBJS) -o $(NAME) $(LIBS) $(FRAMEWORKS)
 	CC2			=	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -81,7 +81,7 @@ $(OBJS)		:	$(OBJSDIR)%.o		:	$(SRCSDIR)%.c $(HEADER)
 #			$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 all		:	mandatory #bonus
-			$(GCL)
+		$(GCL)
 
 mandatory	:	$(NAME)
 

@@ -6,11 +6,17 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:11 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/08 13:46:58 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/09 17:42:29 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
+
+int gcd(int a, int b)
+{
+    if (b == 0) return a;
+    return gcd(b, a % b);
+}
 
 int	get_type(char **av, t_instance *game, int ac)
 {
