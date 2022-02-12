@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   win.c                                              :+:      :+:    :+:   */
+/*   win_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:04 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/12 19:20:20 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/12 19:40:03 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fractol.h>
+#include <fractol_bonus.h>
 
 t_instance	*init_arg(int ac, char **av, t_instance *game)
 {
@@ -20,6 +20,8 @@ t_instance	*init_arg(int ac, char **av, t_instance *game)
 			"it need to be one of the following :\n"
 			"	-m --mandelbrot    draw the mandelbrot set in a new window\n"
 			"	-j --julia         draw the julia set in a new window\n"
+			"	-b --bonus         draw the bonus set in a new window"
+			" (not implemented yet)\n"
 			"	-o --other         change julia modifer"
 			" (need to be an int between 1 and 100)\n");
 		exit(EXIT_FAILURE);

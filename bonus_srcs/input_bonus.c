@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   input_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:38 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/12 18:43:07 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/12 19:49:11 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fractol.h>
+#include <fractol_bonus.h>
 
 int	key_handling(int keycode, t_instance *game)
 {
+	static int	j = 0;
+
 	if (keycode == KEY_ESC)
 		close_handling(game);
 	if (keycode == KEY_ARROW_UP)
@@ -24,6 +26,16 @@ int	key_handling(int keycode, t_instance *game)
 		game->x_off += 50;
 	if (keycode == KEY_ARROW_RIGHT)
 		game->x_off -= 50;
+	if (keycode == KEY_J)
+		game->type = 2;
+	if (keycode == KEY_M)
+		game->type = 1;
+	if (keycode == KEY_C)
+	{
+		game->color = 1;
+		j++;
+		init_palette((j % 5 + 5), game);
+	}
 	mlx_clear_window(game->mlx, game->win);
 	put_set_to_image(game);
 	return (0);

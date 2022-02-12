@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string_operation.c                                 :+:      :+:    :+:   */
+/*   string_operation_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:08 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/12 18:51:40 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/12 19:40:30 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fractol.h>
+#include <fractol_bonus.h>
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
