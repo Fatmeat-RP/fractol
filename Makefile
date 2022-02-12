@@ -6,7 +6,7 @@
 #    By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 10:55:45 by acarle-m          #+#    #+#              #
-#    Updated: 2022/02/12 19:52:46 by acarle-m         ###   ########.fr        #
+#    Updated: 2022/02/12 22:40:57 by acarle-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,33 @@ OBJS			=	$(SRCS:$(SRCSDIR)%.c=$(OBJSDIR)%.o)
 
 BONUS_OBJS		=	$(SRCSBONUS:$(BONUSDIR)%.c=$(BONUS_OBJSDIR)%.o)
 
-SRCS			= 	$(wildcard $(SRCSDIR)*.c)
+SRCS			=	$(SRCSDIR)color.c				\
+					$(SRCSDIR)fractal_operation.c	\
+					$(SRCSDIR)fractal_set.c			\
+					$(SRCSDIR)ft_fprintf.c			\
+					$(SRCSDIR)ft_put.c				\
+					$(SRCSDIR)ft_puthex.c			\
+					$(SRCSDIR)ft_putp.c				\
+					$(SRCSDIR)img_op.c				\
+					$(SRCSDIR)input.c				\
+					$(SRCSDIR)list.c				\
+					$(SRCSDIR)string_operation.c	\
+					$(SRCSDIR)utils.c				\
+					$(SRCSDIR)win.c
 
-SRCSBONUS		=	$(wildcard $(BONUSDIR)*.c)
+SRCSBONUS		=	$(BONUSDIR)color_bonus.c				\
+					$(BONUSDIR)fractal_operation_bonus.c	\
+					$(BONUSDIR)fractal_set_bonus.c			\
+					$(BONUSDIR)ft_fprintf_bonus.c			\
+					$(BONUSDIR)ft_put_bonus.c				\
+					$(BONUSDIR)ft_puthex_bonus.c			\
+					$(BONUSDIR)ft_putp_bonus.c				\
+					$(BONUSDIR)img_op_bonus.c				\
+					$(BONUSDIR)input_bonus.c				\
+					$(BONUSDIR)list_bonus.c					\
+					$(BONUSDIR)string_operation_bonus.c		\
+					$(BONUSDIR)utils_bonus.c				\
+					$(BONUSDIR)win_bonus.c
 
 INCLUDES		=	-I include -I mlx
 

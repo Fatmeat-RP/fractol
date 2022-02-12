@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:44:11 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/12 19:40:26 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/12 23:25:17 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,20 @@ int	get_type(char **av, t_instance *game, int ac)
 	j = 0;
 	while (i < ac)
 	{
-		if (ft_strncmp("-m", av[i], 2) == 0
-			|| ft_strncmp("--mandelbrot", av[i], 12) == 0)
+		if (ft_strncmp("-m", av[i], 3) == 0
+			|| ft_strncmp("--mandelbrot", av[i], 13) == 0)
 			game->type = 1;
-		else if (ft_strncmp("-j", av[i], 2) == 0
-			|| ft_strncmp("--julia", av[i], 7) == 0)
+		else if (ft_strncmp("-j", av[i], 3) == 0
+			|| ft_strncmp("--julia", av[i], 8) == 0)
 			game->type = 2;
-		if (ft_strncmp("-c", av[i], 2) == 0
-			|| ft_strncmp("--color", av[i], 7) == 0)
+		else if (ft_strncmp("-b", av[i], 3) == 0
+			|| ft_strncmp("--bonus", av[i], 8) == 0)
+			game->type = 3;
+		if (ft_strncmp("-c", av[i], 3) == 0
+			|| ft_strncmp("--color", av[i], 8) == 0)
 			get_palette(av[i++ + 1], game);
-		if (ft_strncmp("-o", av[i], 2) == 0
-			|| ft_strncmp("--other", av[i], 7) == 0)
+		if (ft_strncmp("-o", av[i], 3) == 0
+			|| ft_strncmp("--other", av[i], 8) == 0)
 			get_modifier(av[i++ + 1], game);
 		i++;
 	}

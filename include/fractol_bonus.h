@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 17:18:50 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/12 19:40:15 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/12 23:27:27 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int			mouse_moving(int x, int y, t_instance *game);
 int			key_handling(int keycode, t_instance *game);
 int			ft_fractol(t_instance *game, int x, int y);
 int			julia_set(t_instance *game, int x, int y);
+int			bonus_set(t_instance *game, int x, int y);
 int			close_handling(t_instance *game);
 int			init_palette(int color, t_instance *game);
 int			ft_atoi(const char *s);

@@ -6,7 +6,7 @@
 /*   By: acarle-m <acarle-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:34:42 by acarle-m          #+#    #+#             */
-/*   Updated: 2022/02/12 18:21:32 by acarle-m         ###   ########.fr       */
+/*   Updated: 2022/02/12 23:28:17 by acarle-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_fractol(t_instance *game, int x, int y)
 	if (game->type == 1)
 		return (mandelbrot_set(game, x, y));
 	if (game->type == 2)
-		return (julia_set(game, x, y));
+		return (julia_set(game, x, y));;
 	return (0);
 }
 
